@@ -245,16 +245,30 @@
     text-align: left;
     font-weight: 500;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .cutoff-table td {
     padding: 6px 10px;
     border-bottom: 1px solid rgba(48,54,61,0.5);
     color: var(--text);
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .cutoff-table tr:last-child td { border-bottom: none; }
   .cutoff-table .tag-low { color: #3fb950; font-weight: 600; }
   .cutoff-table .tag-mid { color: #ffa657; font-weight: 600; }
   .cutoff-table .tag-high { color: #ff7b72; font-weight: 600; }
+  .cutoff-section-head {
+    background: var(--surface2);
+    color: var(--accent);
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 5px 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
 
   /* ── Calculator ── */
   .calc-section {
@@ -293,6 +307,9 @@
     padding: 7px 10px;
     transition: border-color 0.15s;
     -moz-appearance: textfield;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .input-group input::-webkit-outer-spin-button,
   .input-group input::-webkit-inner-spin-button { -webkit-appearance: none; }
@@ -352,8 +369,16 @@
     padding-top: 10px;
     border-top: 1px solid var(--border);
     line-height: 1.7;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .note strong { color: #c9d1d9; }
+  .note table {
+    max-width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   /* ── All view ── */
   #section-all .section-title::before { background: var(--accent); }
@@ -494,6 +519,14 @@
     font-size: 12.5px;
     margin-top: 6px;
     font-weight: 500;
+  }
+
+  .header-credit {
+    font-size: 10.5px !important;
+    color: rgba(255, 255, 255, 0.52) !important;
+    margin-top: 4px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em;
   }
 
   .nav-wrap {
@@ -776,6 +809,7 @@
     border-radius: 8px;
     padding: 10px 12px 8px;
     margin-bottom: 10px;
+    overflow: hidden;
   }
   .bmi-hr-title {
     font-size: 9.5px; font-weight: 800; color: #3b52b0;
@@ -787,6 +821,7 @@
     gap: 8px;
     margin-bottom: 8px;
   }
+  .bmi-hr-inputs .input-group { min-width: 0; }
   .bmi-auto-badge {
     display: none;
     align-items: center;
@@ -1040,6 +1075,7 @@
 <header>
   <h1>📐 내분비대사내과 진료 참고용 공식집</h1>
   <p>Endocrinology &amp; Metabolism — Clinical Formula Reference with Interactive Calculators</p>
+  <p class="header-credit">(제작: 경북대학교병원 내분비대사내과 김정국)</p>
 </header>
 
 <!-- ════════════════════════════════════════
@@ -1156,7 +1192,7 @@ const FORMULAS = [
     { range: '> 2.67', interp: '진행성 섬유화 가능성 높음 (F3–F4)', cls: 'tag-high' },
     { range: '≥ 3.48　　[MASLD F4 rule-in]', interp: '간경변 가능성 높음 (specificity 95%) — AASLD 2023', cls: 'tag-high' },
   ],
-  note: '【연령 보정】 ≥65세: 하한 cutoff 2.0 적용 (AASLD 2023·EASL 2024 공통). &lt;35세: 정확도 낮음 → 이차 평가 고려.\n【질환별 차이】 HCV: &lt;1.45 / &gt;3.25 / HBV: &lt;1.0 / &gt;2.65 / NAFLD(MASLD): &lt;1.30 / &gt;2.67.\n【MASLD F4 특이 cutoff — AASLD 2023】 rule-out &lt;1.67 · rule-in ≥3.48. 단, ≥3.48의 sensitivity 65% (cirrhosis 4명 중 1명 누락) — 검증 진행 중.\n【위양성 주의】 AST 상승(근육손상·용혈·갑상선기능저하), 혈소판 감소(혈액질환), 급성 질환 중에는 사용 금지.',
+  note: '【연령 보정】 ≥65세: 하한 cutoff 2.0 적용 (AASLD 2023·EASL 2024 공통). &lt;35세: 정확도 낮음 → 이차 평가 고려.<br>【질환별 차이】 HCV: &lt;1.45 / &gt;3.25 / HBV: &lt;1.0 / &gt;2.65 / NAFLD(MASLD): &lt;1.30 / &gt;2.67.<br>【MASLD F4 특이 cutoff — AASLD 2023】 rule-out &lt;1.67 · rule-in ≥3.48. 단, ≥3.48의 sensitivity 65% (cirrhosis 4명 중 1명 누락) — 검증 진행 중.<br>【위양성 주의】 AST 상승(근육손상·용혈·갑상선기능저하), 혈소판 감소(혈액질환), 급성 질환 중에는 사용 금지.',
   inputs: [
     { id: 'fib4_age', label: '나이 (세)', placeholder: '58' },
     { id: 'fib4_ast', label: 'AST (U/L)', placeholder: '42' },
@@ -2077,11 +2113,29 @@ TAR2 = % time >250 mg/dL   → 목표 <5%
 CV (Coefficient of Variation) = SD/Mean × 100
 → 혈당 변동성 목표: CV < 36%`,
   cutoffs: [
-    { range: 'TIR ≥ 70%', interp: 'T2DM/T1DM 목표', cls: 'tag-low' },
-    { range: 'TIR 50 – 70%', interp: '부분 목표 달성', cls: 'tag-mid' },
-    { range: 'TIR < 50%', interp: '혈당 조절 불량', cls: 'tag-high' },
+    { section: 'TIR — Time in Range (70–180 mg/dL)' },
+    { range: 'TIR ≥ 70%',       interp: '목표 달성 (T1DM·T2DM 공통)',    cls: 'tag-low'  },
+    { range: 'TIR 50 – 70%',    interp: '부분 달성 — 약제·식이 조정 필요', cls: 'tag-mid'  },
+    { range: 'TIR < 50%',       interp: '혈당 조절 불량',                 cls: 'tag-high' },
+    { section: 'TBR1 — Time Below Range (< 70 mg/dL, 저혈당)' },
+    { range: 'TBR1 < 4%',       interp: '목표 달성',                      cls: 'tag-low'  },
+    { range: 'TBR1 4 – 10%',    interp: '저혈당 빈도 과다 — 원인 탐색',   cls: 'tag-mid'  },
+    { range: 'TBR1 ≥ 10%',      interp: '저혈당 위험 심각 — 즉시 조정',  cls: 'tag-high' },
+    { section: 'TBR2 — Time Below Range (< 54 mg/dL, 심한 저혈당)' },
+    { range: 'TBR2 < 1%',       interp: '목표 달성',                      cls: 'tag-low'  },
+    { range: 'TBR2 ≥ 1%',       interp: '심한 저혈당 발생 — 즉시 개입',  cls: 'tag-high' },
+    { section: 'TAR1 — Time Above Range (> 180 mg/dL, 고혈당)' },
+    { range: 'TAR1 < 25%',      interp: '목표 달성',                      cls: 'tag-low'  },
+    { range: 'TAR1 25 – 50%',   interp: '고혈당 빈도 증가 — 약제 조정',  cls: 'tag-mid'  },
+    { range: 'TAR1 ≥ 50%',      interp: '고혈당 조절 불량',               cls: 'tag-high' },
+    { section: 'TAR2 — Time Above Range (> 250 mg/dL, 심한 고혈당)' },
+    { range: 'TAR2 < 5%',       interp: '목표 달성',                      cls: 'tag-low'  },
+    { range: 'TAR2 ≥ 5%',       interp: '심한 고혈당 빈번 — 인슐린 조정', cls: 'tag-high' },
+    { section: 'CV — 혈당 변동성' },
+    { range: 'CV < 36%',        interp: '변동성 안정',                    cls: 'tag-low'  },
+    { range: 'CV ≥ 36%',        interp: '저혈당 위험 증가 — 변동성 조정', cls: 'tag-high' },
   ],
-  note: 'TIR 10% 증가 ≈ HbA1c 0.5% 감소에 해당. CV > 36%: 저혈당 위험 증가.',
+  note: 'TIR 10% 증가 ≈ HbA1c 0.5% 감소에 해당.<br>TBR2 ≥1%, TAR2 ≥5%는 즉각적 치료 조정 기준.<br>고령·저혈당 취약군: TIR ≥50%, TBR1 &lt;1% 완화 목표 적용.',
   inputs: [],
   calc: null
 },
@@ -2096,9 +2150,10 @@ function buildCard(f) {
   const hasCutoffs = f.cutoffs && f.cutoffs.length;
   const hasCalc = f.calc && f.inputs && f.inputs.length > 0;
 
-  const cutoffRows = hasCutoffs ? f.cutoffs.map(c =>
-    `<tr><td class="${c.cls}">${c.range}</td><td>${c.interp}</td></tr>`
-  ).join('') : '';
+  const cutoffRows = hasCutoffs ? f.cutoffs.map(c => {
+    if (c.section) return `<tr><td colspan="2" class="cutoff-section-head">${c.section}</td></tr>`;
+    return `<tr><td class="${c.cls}">${c.range}</td><td>${c.interp}</td></tr>`;
+  }).join('') : '';
 
   // ── 입력 필드: id 제거 → data-inputid 사용, oninput 자동 계산
   // ── bmiAuto 헬퍼: input-row 밖에 독립 블록으로 렌더링 ──
