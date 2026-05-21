@@ -365,6 +365,42 @@
   #section-thyroid .section-title::before { background: var(--cat-thyroid); }
   #section-renal .section-title::before { background: var(--cat-renal); }
   #section-diabetes .section-title::before { background: var(--cat-diabetes); }
+
+  /* ── Card Close Button ── */
+  .card-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 8px 0;
+    border: none;
+    border-top: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: color 0.15s, background 0.15s;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .card-close-btn:hover {
+    color: var(--accent);
+    background: var(--highlight);
+  }
+  .card-close-btn .ccb-arrow {
+    font-size: 11px;
+    transition: transform 0.2s;
+  }
+  .card-close-btn:hover .ccb-arrow {
+    transform: translateY(-1px);
+  }
+  @media print {
+    .card-close-btn { display: none; }
+  }
 </style>
 
 <!-- Bright modern clinical theme override -->
@@ -2178,6 +2214,9 @@ function buildCard(f) {
       ${hasCutoffs ? `<table class="cutoff-table"><thead><tr><th>값 범위</th><th>해석</th></tr></thead><tbody>${cutoffRows}</tbody></table>` : ''}
       ${calcSection}
       ${f.note ? `<div class="note"><strong>참고:</strong> ${f.note}</div>` : ''}
+      <button class="card-close-btn" onclick="toggleCard(this.closest('.card').querySelector('.card-header'))">
+        <span class="ccb-arrow">▴</span> 닫기
+      </button>
     </div>
   </div>`;
 }
