@@ -1482,8 +1482,8 @@ ARR = 알도스테론[ng/dL] / DRC[mIU/L]        ← 단위·절단값 완전히
   </tbody>
 </table>`,
   preInputsHtml: `
-    <div style="display:flex;gap:10px;margin-bottom:11px;align-items:flex-start;">
-      <div class="input-group" style="flex:0 0 160px;">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:11px;align-items:flex-start;">
+      <div class="input-group" style="flex:1 1 150px;min-width:0;">
         <label>알도스테론 단위</label>
         <select data-inputid="arr_aldo_unit" onchange="liveCalc(this)">
           <option value="1" selected>ng/dL  (기준)</option>
@@ -1492,7 +1492,7 @@ ARR = 알도스테론[ng/dL] / DRC[mIU/L]        ← 단위·절단값 완전히
         </select>
         <span class="input-hint">* 단위 선택 후 수치 입력</span>
       </div>
-      <div class="input-group" style="flex:1;">
+      <div class="input-group" style="flex:1 1 160px;min-width:0;">
         <label>알도스테론 값</label>
         <input type="number" data-inputid="arr_aldo" placeholder="20" step="any" oninput="liveCalc(this)">
         <span class="input-hint">* 정상: 3–16 ng/dL / 30–160 pg/mL / 83–443 pmol/L</span>
