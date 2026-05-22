@@ -2288,7 +2288,35 @@ function renderAll() {
 
 function toggleCard(headerEl) {
   const card = headerEl.closest('.card');
-  if (card) card.classList.toggle('open');
+  if (!card) return;
+
+  const isAlreadyOpen = card.classList.contains('open');
+
+  // 같은 그리드 안의 다른 열린 카드를 모두 닫는다 (아코디언)
+  const grid = card.closest('.formula-grid');
+  if (grid) {
+    grid.querySelectorAll('.card.open').forEach(c => {
+      if (c !== card) {
+        c.classList.remove('open');
+        // formula-box 및 formula-toggle 상태도 초기화
+        const fb = c.querySelector('.formula-box');
+        const ft = c.querySelector('.formula-toggle');
+        if (fb) fb.classList.remove('open');
+        if (ft) ft.classList.remove('open');
+      }
+    });
+  }
+
+  // 현재 카드 토글
+  card.classList.toggle('open');
+
+  // 카드가 닫힐 때 formula-box 초기화
+  if (isAlreadyOpen) {
+    const fb = card.querySelector('.formula-box');
+    const ft = card.querySelector('.formula-toggle');
+    if (fb) fb.classList.remove('open');
+    if (ft) ft.classList.remove('open');
+  }
 }
 
 function toggleFormula(toggleEl) {
