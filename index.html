@@ -245,30 +245,16 @@
     text-align: left;
     font-weight: 500;
     border-bottom: 1px solid var(--border);
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
   .cutoff-table td {
     padding: 6px 10px;
     border-bottom: 1px solid rgba(48,54,61,0.5);
     color: var(--text);
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
   .cutoff-table tr:last-child td { border-bottom: none; }
   .cutoff-table .tag-low { color: #3fb950; font-weight: 600; }
   .cutoff-table .tag-mid { color: #ffa657; font-weight: 600; }
   .cutoff-table .tag-high { color: #ff7b72; font-weight: 600; }
-  .cutoff-section-head {
-    background: var(--surface2);
-    color: var(--accent);
-    font-size: 10.5px;
-    font-weight: 700;
-    padding: 5px 10px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border);
-  }
 
   /* ── Calculator ── */
   .calc-section {
@@ -307,9 +293,6 @@
     padding: 7px 10px;
     transition: border-color 0.15s;
     -moz-appearance: textfield;
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
   }
   .input-group input::-webkit-outer-spin-button,
   .input-group input::-webkit-inner-spin-button { -webkit-appearance: none; }
@@ -369,16 +352,8 @@
     padding-top: 10px;
     border-top: 1px solid var(--border);
     line-height: 1.7;
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
   .note strong { color: #c9d1d9; }
-  .note table {
-    max-width: 100%;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
 
   /* ── All view ── */
   #section-all .section-title::before { background: var(--accent); }
@@ -390,42 +365,6 @@
   #section-thyroid .section-title::before { background: var(--cat-thyroid); }
   #section-renal .section-title::before { background: var(--cat-renal); }
   #section-diabetes .section-title::before { background: var(--cat-diabetes); }
-
-  /* ── Card Close Button ── */
-  .card-close-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    margin-top: 14px;
-    padding: 8px 0;
-    border: none;
-    border-top: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-muted);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    transition: color 0.15s, background 0.15s;
-    border-radius: 0 0 var(--radius) var(--radius);
-  }
-  .card-close-btn:hover {
-    color: var(--accent);
-    background: var(--highlight);
-  }
-  .card-close-btn .ccb-arrow {
-    font-size: 11px;
-    transition: transform 0.2s;
-  }
-  .card-close-btn:hover .ccb-arrow {
-    transform: translateY(-1px);
-  }
-  @media print {
-    .card-close-btn { display: none; }
-  }
 </style>
 
 <!-- Bright modern clinical theme override -->
@@ -519,14 +458,6 @@
     font-size: 12.5px;
     margin-top: 6px;
     font-weight: 500;
-  }
-
-  .header-credit {
-    font-size: 10.5px !important;
-    color: rgba(255, 255, 255, 0.52) !important;
-    margin-top: 4px !important;
-    font-weight: 400 !important;
-    letter-spacing: 0.01em;
   }
 
   .nav-wrap {
@@ -809,7 +740,6 @@
     border-radius: 8px;
     padding: 10px 12px 8px;
     margin-bottom: 10px;
-    overflow: hidden;
   }
   .bmi-hr-title {
     font-size: 9.5px; font-weight: 800; color: #3b52b0;
@@ -821,7 +751,6 @@
     gap: 8px;
     margin-bottom: 8px;
   }
-  .bmi-hr-inputs .input-group { min-width: 0; }
   .bmi-auto-badge {
     display: none;
     align-items: center;
@@ -1034,27 +963,33 @@
     scrollbar-color: #d0e3f7 transparent;
   }
   .glossary-item {
-    display: flex; align-items: flex-start; gap: 11px;
-    padding: 9px 16px;
+    display: flex; align-items: center; gap: 11px;
+    padding: 8px 16px;
     border-bottom: 1px solid rgba(216,228,240,0.5);
     transition: background 0.1s;
-    cursor: default;
+    cursor: pointer;
   }
   .glossary-item:last-child { border-bottom: none; }
-  .glossary-item:hover { background: #f8fbff; }
+  .glossary-item:hover { background: #eff6ff; }
+  .glossary-item:hover .g-full { color: #2563eb; }
+  .glossary-item:hover .g-open-hint { opacity: 1; }
   .g-badge {
     font-size: 11px; font-weight: 800; letter-spacing: 0.01em;
     padding: 3px 9px; border-radius: 999px; flex-shrink: 0;
-    margin-top: 2px; font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     border: 1px solid currentColor; white-space: nowrap;
     min-width: 60px; text-align: center;
   }
-  .g-body { flex: 1; min-width: 0; }
-  .g-full { font-size: 12.5px; font-weight: 700; color: #172033; line-height: 1.35; }
-  .g-ko { font-size: 11.5px; color: #607089; margin-top: 2px; line-height: 1.4; }
+  .g-body { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; }
+  .g-full { font-size: 12.5px; font-weight: 600; color: #172033; line-height: 1.35; transition: color 0.12s; }
+  .g-ko { display: none; }
   .g-cat-tag {
     font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em;
     text-transform: uppercase; opacity: 0.75; margin-left: 4px;
+  }
+  .g-open-hint {
+    margin-left: auto; font-size: 10px; color: #93c5fd;
+    opacity: 0; transition: opacity 0.12s; flex-shrink: 0; font-weight: 600;
   }
   .glossary-highlight { background: rgba(37,99,235,0.13); border-radius: 2px; font-weight: 800; color: #1d4ed8; }
   .glossary-no-result {
@@ -1068,14 +1003,71 @@
     .glossary-label { display: none; }
   }
 
+  /* ── Glossary Detail Modal ── */
+  .gmodal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(15,23,42,0.45); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px 16px;
+  }
+  .gmodal-overlay.show { display: flex; animation: gmodal-bg-in 0.18s ease-out; }
+  @keyframes gmodal-bg-in { from{opacity:0} to{opacity:1} }
+  .gmodal {
+    background: #ffffff; border-radius: 22px;
+    box-shadow: 0 32px 72px rgba(15,23,42,0.22), 0 4px 16px rgba(37,99,235,0.10);
+    max-width: 580px; width: 100%; overflow: hidden;
+    animation: gmodal-in 0.22s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes gmodal-in {
+    from { opacity:0; transform:scale(0.90) translateY(12px); }
+    to   { opacity:1; transform:scale(1)    translateY(0); }
+  }
+  .gmodal-header {
+    padding: 20px 22px 16px; border-bottom: 1px solid #e8f0fb;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .gmodal-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px; font-weight: 800;
+    padding: 6px 16px; border-radius: 999px;
+    flex-shrink: 0; border: 2px solid currentColor;
+  }
+  .gmodal-title-block { flex: 1; min-width: 0; }
+  .gmodal-full { font-size: 13px; font-weight: 700; color: #172033; line-height: 1.45; margin-bottom: 5px; }
+  .gmodal-cat {
+    display: inline-block; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; opacity: 0.85;
+  }
+  .gmodal-close {
+    background: #f1f5f9; border: none; cursor: pointer;
+    width: 30px; height: 30px; border-radius: 50%;
+    font-size: 14px; color: #64748b; flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, color 0.12s;
+  }
+  .gmodal-close:hover { background: #e2e8f0; color: #1e293b; }
+  .gmodal-body { padding: 18px 22px 22px; }
+  .gmodal-ko { font-size: 13.5px; color: #334155; line-height: 1.9; word-break: keep-all; }
+  .gmodal-nav {
+    display: flex; gap: 8px; margin-top: 16px;
+    padding-top: 14px; border-top: 1px solid #eef4fb;
+    align-items: center;
+  }
+  .gmodal-hint { font-size: 10.5px; color: #a8b8cc; flex: 1; }
+  .gmodal-nav-btn {
+    background: #f8fafc; border: 1px solid #dde9f6; border-radius: 999px;
+    padding: 5px 14px; font-size: 11.5px; font-weight: 700; color: #475569;
+    cursor: pointer; transition: all 0.12s;
+  }
+  .gmodal-nav-btn:hover:not(:disabled) { background: #eff6ff; border-color: #93c5fd; color: #2563eb; }
+  .gmodal-nav-btn:disabled { opacity: 0.3; cursor: default; }
   /* ── Grouped Cutoffs (cg-*) ── */
   .cg-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 11px;
     margin-bottom: 14px;
   }
-  @media (max-width: 680px) { .cg-wrap { grid-template-columns: 1fr; } }
   .cg-panel {
     border: 1.5px solid #dde9f6;
     border-radius: 12px;
@@ -1086,7 +1078,7 @@
   .cg-head {
     padding: 7px 12px;
     font-size: 10px; font-weight: 900;
-    letter-spacing: 0.08em; text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: #fff; flex-shrink: 0;
   }
   .cg-row {
@@ -1117,7 +1109,7 @@
   .cg-sub-head {
     padding: 6px 12px;
     font-size: 9.5px; font-weight: 900;
-    letter-spacing: 0.07em; text-transform: uppercase;
+    letter-spacing: 0.04em;
     border-bottom: 1px solid #c7e6f5;
     display: flex; align-items: center; gap: 5px;
   }
@@ -1127,6 +1119,7 @@
   .cg-sub .cg-range { font-size: 10px; border-right-color: #d8eff8; }
   .cg-sub .cg-interp { font-size: 10.5px; color: #374151; }
   .cg-row.has-sub .cg-range::after { content: ' \25BC'; font-size: 9px; color: #0d9488; }
+
 </style>
 
 </head>
@@ -1135,8 +1128,29 @@
 <header>
   <h1>📐 내분비대사내과 진료 참고용 공식집</h1>
   <p>Endocrinology &amp; Metabolism — Clinical Formula Reference with Interactive Calculators</p>
-  <p class="header-credit">(제작: 경북대학교병원 내분비대사내과 김정국)</p>
 </header>
+
+<!-- Glossary Detail Modal -->
+<div class="gmodal-overlay" id="gmodalOverlay">
+  <div class="gmodal" id="gmodal">
+    <div class="gmodal-header">
+      <span class="gmodal-badge" id="gmodalBadge"></span>
+      <div class="gmodal-title-block">
+        <div class="gmodal-full" id="gmodalFull"></div>
+        <span class="gmodal-cat" id="gmodalCat"></span>
+      </div>
+      <button class="gmodal-close" id="gmodalClose" title="닫기">&#x2715;</button>
+    </div>
+    <div class="gmodal-body">
+      <div class="gmodal-ko" id="gmodalKo"></div>
+      <div class="gmodal-nav">
+        <span class="gmodal-hint" id="gmodalHint"></span>
+        <button class="gmodal-nav-btn" id="gmodalPrev">&#9664; 이전</button>
+        <button class="gmodal-nav-btn" id="gmodalNext">다음 &#9654;</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ════════════════════════════════════════
      GLOSSARY SEARCH BAR
@@ -1252,7 +1266,7 @@ const FORMULAS = [
     { range: '> 2.67', interp: '진행성 섬유화 가능성 높음 (F3–F4)', cls: 'tag-high' },
     { range: '≥ 3.48　　[MASLD F4 rule-in]', interp: '간경변 가능성 높음 (specificity 95%) — AASLD 2023', cls: 'tag-high' },
   ],
-  note: '【연령 보정】 ≥65세: 하한 cutoff 2.0 적용 (AASLD 2023·EASL 2024 공통). &lt;35세: 정확도 낮음 → 이차 평가 고려.<br>【질환별 차이】 HCV: &lt;1.45 / &gt;3.25 / HBV: &lt;1.0 / &gt;2.65 / NAFLD(MASLD): &lt;1.30 / &gt;2.67.<br>【MASLD F4 특이 cutoff — AASLD 2023】 rule-out &lt;1.67 · rule-in ≥3.48. 단, ≥3.48의 sensitivity 65% (cirrhosis 4명 중 1명 누락) — 검증 진행 중.<br>【위양성 주의】 AST 상승(근육손상·용혈·갑상선기능저하), 혈소판 감소(혈액질환), 급성 질환 중에는 사용 금지.',
+  note: '【연령 보정】 ≥65세: 하한 cutoff 2.0 적용 (AASLD 2023·EASL 2024 공통). &lt;35세: 정확도 낮음 → 이차 평가 고려.\n【질환별 차이】 HCV: &lt;1.45 / &gt;3.25 / HBV: &lt;1.0 / &gt;2.65 / NAFLD(MASLD): &lt;1.30 / &gt;2.67.\n【MASLD F4 특이 cutoff — AASLD 2023】 rule-out &lt;1.67 · rule-in ≥3.48. 단, ≥3.48의 sensitivity 65% (cirrhosis 4명 중 1명 누락) — 검증 진행 중.\n【위양성 주의】 AST 상승(근육손상·용혈·갑상선기능저하), 혈소판 감소(혈액질환), 급성 질환 중에는 사용 금지.',
   inputs: [
     { id: 'fib4_age', label: '나이 (세)', placeholder: '58' },
     { id: 'fib4_ast', label: 'AST (U/L)', placeholder: '42' },
@@ -1614,8 +1628,8 @@ ARR = 알도스테론[ng/dL] / DRC[mIU/L]        ← 단위·절단값 완전히
   </tbody>
 </table>`,
   preInputsHtml: `
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:11px;align-items:flex-start;">
-      <div class="input-group" style="flex:1 1 150px;min-width:0;">
+    <div style="display:flex;gap:10px;margin-bottom:11px;align-items:flex-start;">
+      <div class="input-group" style="flex:0 0 160px;">
         <label>알도스테론 단위</label>
         <select data-inputid="arr_aldo_unit" onchange="liveCalc(this)">
           <option value="1" selected>ng/dL  (기준)</option>
@@ -1624,7 +1638,7 @@ ARR = 알도스테론[ng/dL] / DRC[mIU/L]        ← 단위·절단값 완전히
         </select>
         <span class="input-hint">* 단위 선택 후 수치 입력</span>
       </div>
-      <div class="input-group" style="flex:1 1 160px;min-width:0;">
+      <div class="input-group" style="flex:1;">
         <label>알도스테론 값</label>
         <input type="number" data-inputid="arr_aldo" placeholder="20" step="any" oninput="liveCalc(this)">
         <span class="input-hint">* 정상: 3–16 ng/dL / 30–160 pg/mL / 83–443 pmol/L</span>
@@ -2172,30 +2186,41 @@ TAR2 = % time >250 mg/dL   → 목표 <5%
 
 CV (Coefficient of Variation) = SD/Mean × 100
 → 혈당 변동성 목표: CV < 36%`,
-  cutoffs: [
-    { section: 'TIR — Time in Range (70–180 mg/dL)' },
-    { range: 'TIR ≥ 70%',       interp: '목표 달성 (T1DM·T2DM 공통)',    cls: 'tag-low'  },
-    { range: 'TIR 50 – 70%',    interp: '부분 달성 — 약제·식이 조정 필요', cls: 'tag-mid'  },
-    { range: 'TIR < 50%',       interp: '혈당 조절 불량',                 cls: 'tag-high' },
-    { section: 'TBR1 — Time Below Range (< 70 mg/dL, 저혈당)' },
-    { range: 'TBR1 < 4%',       interp: '목표 달성',                      cls: 'tag-low'  },
-    { range: 'TBR1 4 – 10%',    interp: '저혈당 빈도 과다 — 원인 탐색',   cls: 'tag-mid'  },
-    { range: 'TBR1 ≥ 10%',      interp: '저혈당 위험 심각 — 즉시 조정',  cls: 'tag-high' },
-    { section: 'TBR2 — Time Below Range (< 54 mg/dL, 심한 저혈당)' },
-    { range: 'TBR2 < 1%',       interp: '목표 달성',                      cls: 'tag-low'  },
-    { range: 'TBR2 ≥ 1%',       interp: '심한 저혈당 발생 — 즉시 개입',  cls: 'tag-high' },
-    { section: 'TAR1 — Time Above Range (> 180 mg/dL, 고혈당)' },
-    { range: 'TAR1 < 25%',      interp: '목표 달성',                      cls: 'tag-low'  },
-    { range: 'TAR1 25 – 50%',   interp: '고혈당 빈도 증가 — 약제 조정',  cls: 'tag-mid'  },
-    { range: 'TAR1 ≥ 50%',      interp: '고혈당 조절 불량',               cls: 'tag-high' },
-    { section: 'TAR2 — Time Above Range (> 250 mg/dL, 심한 고혈당)' },
-    { range: 'TAR2 < 5%',       interp: '목표 달성',                      cls: 'tag-low'  },
-    { range: 'TAR2 ≥ 5%',       interp: '심한 고혈당 빈번 — 인슐린 조정', cls: 'tag-high' },
-    { section: 'CV — 혈당 변동성' },
-    { range: 'CV < 36%',        interp: '변동성 안정',                    cls: 'tag-low'  },
-    { range: 'CV ≥ 36%',        interp: '저혈당 위험 증가 — 변동성 조정', cls: 'tag-high' },
+  cutoffs: [],
+  cutoffGroups: [
+    {
+      label: '① TIR — Time in Range (70–180 mg/dL)',
+      accent: '#16a34a',
+      rows: [
+        { range: 'TIR ≥ 70%',   interp: '목표 달성 — T2DM·T1DM 표준 목표 (Battelino 2019)', cls: 'cl' },
+        { range: 'TIR 50–69%',  interp: '부분 달성 — 혈당 관리 강화 고려',                    cls: 'cm' },
+        { range: 'TIR < 50%',   interp: '혈당 조절 불량 — 약제·식이·생활습관 전반 재평가',   cls: 'ch' },
+      ]
+    },
+    {
+      label: '② TBR — Time Below Range',
+      accent: '#7c3aed',
+      rows: [
+        { range: 'TBR1 (<70 mg/dL) < 4%',  interp: '목표 달성 (T2DM·T1DM 공통)',                          cls: 'cl' },
+        { range: 'TBR1  4–9%',              interp: '경계 — 저혈당 경향, 야간/운동 전후 집중 모니터링',    cls: 'cm' },
+        { range: 'TBR1 ≥ 10%',             interp: '저혈당 과다 — 용량 감량·식사 타이밍 즉시 조정',      cls: 'ch' },
+        { range: 'TBR2 (<54 mg/dL) < 1%',  interp: '목표 달성 — 중증 저혈당 없음',                       cls: 'cl' },
+        { range: 'TBR2 ≥ 1%',              interp: '중증 저혈당 과다 — 즉각적 치료 조정 필요',           cls: 'ch' },
+      ]
+    },
+    {
+      label: '③ TAR — Time Above Range',
+      accent: '#ea580c',
+      rows: [
+        { range: 'TAR1 (>180 mg/dL) < 25%', interp: '목표 달성 (T2DM·T1DM 공통)',                             cls: 'cl' },
+        { range: 'TAR1  25–50%',             interp: '경도 초과 — 식후 혈당 관리 및 약제 타이밍 점검',        cls: 'cm' },
+        { range: 'TAR1 > 50%',              interp: '고혈당 과다 — 기저·식후 인슐린 또는 경구약 전반 재검토', cls: 'ch' },
+        { range: 'TAR2 (>250 mg/dL) < 5%',  interp: '목표 달성 — 중증 고혈당 없음',                          cls: 'cl' },
+        { range: 'TAR2 ≥ 5%',               interp: '중증 고혈당 과다 — 지속 고혈당·DKA 위험 평가 필요',    cls: 'ch' },
+      ]
+    },
   ],
-  note: 'TIR 10% 증가 ≈ HbA1c 0.5% 감소에 해당.<br>TBR2 ≥1%, TAR2 ≥5%는 즉각적 치료 조정 기준.<br>고령·저혈당 취약군: TIR ≥50%, TBR1 &lt;1% 완화 목표 적용.',
+  note: 'TIR 10% 증가 ≈ HbA1c 0.5% 감소. 고령·저혈당 고위험군(T1DM·인슐린 치료 T2DM)은 TBR 목표를 더 엄격히 관리. 임신 중 T1DM: TIR 목표 ≥63%, TBR1 <4%, TBR2 <1%. CV > 36%는 저혈당 위험 증가 지표.',
   inputs: [],
   calc: null
 },
@@ -2204,12 +2229,12 @@ CV (Coefficient of Variation) = SD/Mean × 100
   id: 'hyponatremia_dx', cat: 'renal', catColor: '#0d9488', catLabel: 'Na/Osm',
   name: '저나트륨혈증 진단/감별 알고리즘',
   desc: '혈청/소변 Osm·Na로 hypertonic·isotonic·hypotonic hyponatremia 감별',
-  formula: `1) 저나트륨혈증: 혈청 Na⁺ < 135 mmol/L
+  formula: `1) 저나트륨혈증: 혈청 Na⁺ &lt; 135 mmol/L
 
 2) 혈청 Osmolality로 1차 분류
-   > 295 mOsm/kg  → Hypertonic hyponatremia
+   &gt; 295 mOsm/kg  → Hypertonic hyponatremia
    280–295        → Isotonic hyponatremia / pseudohyponatremia 가능
-   < 275          → Hypotonic hyponatremia = true hyponatremia
+   &lt; 275          → Hypotonic hyponatremia = true hyponatremia
 
 3) 고혈당 보정 Na⁺
    Corrected Na⁺ = measured Na⁺ + 1.6 × ((glucose - 100) / 100)
@@ -2217,13 +2242,13 @@ CV (Coefficient of Variation) = SD/Mean × 100
 
 4) Hypotonic hyponatremia 감별
    Urine Osm ≤100 mOsm/kg → ADH 억제: 과다 수분섭취/저용질 섭취
-   Urine Osm >100 mOsm/kg → ADH 활성 상태 → Urine Na⁺로 다음 분류
+   Urine Osm &gt;100 mOsm/kg → ADH 활성 상태 → Urine Na⁺로 다음 분류
      Urine Na⁺ ≤30 mmol/L → 낮은 effective arterial volume 가능
-     Urine Na⁺ >30 mmol/L → SIADH/이뇨제/부신부전/신질환/renal salt wasting 등`,
-  cutoffs: [],
+     Urine Na⁺ &gt;30 mmol/L → SIADH/이뇨제/부신부전/신질환/renal salt wasting 등`,
+  cutoffs: [],   // ← 아래 cutoffGroups 로 대체
   cutoffGroups: [
     {
-      label: '① 혈청 Na⁺',
+      label: '① 혈청 Na⁺ (Sodium)',
       accent: '#3b82f6',
       rows: [
         { range: '130–134 mmol/L', interp: 'Mild hyponatremia',                                      cls: 'cl' },
@@ -2412,10 +2437,9 @@ function buildCard(f) {
   const hasCutoffs = f.cutoffs && f.cutoffs.length;
   const hasCalc = f.calc && f.inputs && f.inputs.length > 0;
 
-  const cutoffRows = hasCutoffs ? f.cutoffs.map(c => {
-    if (c.section) return `<tr><td colspan="2" class="cutoff-section-head">${c.section}</td></tr>`;
-    return `<tr><td class="${c.cls}">${c.range}</td><td>${c.interp}</td></tr>`;
-  }).join('') : '';
+  const cutoffRows = hasCutoffs ? f.cutoffs.map(c =>
+    `<tr><td class="${c.cls}">${c.range}</td><td>${c.interp}</td></tr>`
+  ).join('') : '';
 
   // ── cutoffGroups 렌더러 ──
   const hasCutoffGroups = f.cutoffGroups && f.cutoffGroups.length;
@@ -2558,9 +2582,6 @@ function buildCard(f) {
       ${hasCutoffGroups ? renderCutoffGroups(f.cutoffGroups) : (hasCutoffs ? `<table class="cutoff-table"><thead><tr><th>값 범위</th><th>해석</th></tr></thead><tbody>${cutoffRows}</tbody></table>` : '')}
       ${calcSection}
       ${f.note ? `<div class="note"><strong>참고:</strong> ${f.note}</div>` : ''}
-      <button class="card-close-btn" onclick="toggleCard(this.closest('.card').querySelector('.card-header'))">
-        <span class="ccb-arrow">▴</span> 닫기
-      </button>
     </div>
   </div>`;
 }
@@ -2577,35 +2598,7 @@ function renderAll() {
 
 function toggleCard(headerEl) {
   const card = headerEl.closest('.card');
-  if (!card) return;
-
-  const isAlreadyOpen = card.classList.contains('open');
-
-  // 같은 그리드 안의 다른 열린 카드를 모두 닫는다 (아코디언)
-  const grid = card.closest('.formula-grid');
-  if (grid) {
-    grid.querySelectorAll('.card.open').forEach(c => {
-      if (c !== card) {
-        c.classList.remove('open');
-        // formula-box 및 formula-toggle 상태도 초기화
-        const fb = c.querySelector('.formula-box');
-        const ft = c.querySelector('.formula-toggle');
-        if (fb) fb.classList.remove('open');
-        if (ft) ft.classList.remove('open');
-      }
-    });
-  }
-
-  // 현재 카드 토글
-  card.classList.toggle('open');
-
-  // 카드가 닫힐 때 formula-box 초기화
-  if (isAlreadyOpen) {
-    const fb = card.querySelector('.formula-box');
-    const ft = card.querySelector('.formula-toggle');
-    if (fb) fb.classList.remove('open');
-    if (ft) ft.classList.remove('open');
-  }
+  if (card) card.classList.toggle('open');
 }
 
 function toggleFormula(toggleEl) {
@@ -2764,6 +2757,92 @@ renderAll();
    GLOSSARY DATA & SEARCH ENGINE
 ════════════════════════════════════════ */
 const GLOSSARY = [
+
+  { term:'SNa', full:'Serum Sodium', ko:'혈청 나트륨 농도. 저나트륨혈증은 보통 SNa <135 mmol/L', cat:'renal' },
+  { term:'Posm', full:'Plasma/Serum Osmolality', ko:'혈장/혈청 삼투질농도. 저Na 감별의 첫 단계: hypertonic/isotonic/hypotonic 분류', cat:'renal' },
+  { term:'Uosm', full:'Urine Osmolality', ko:'소변 삼투질농도. ≤100 mOsm/kg이면 ADH 억제/묽은 소변, >100이면 ADH 활성 상태를 시사', cat:'renal' },
+  { term:'UNa', full:'Urine Sodium', ko:'소변 나트륨. hypotonic hyponatremia에서 ≤30은 낮은 effective arterial volume 가능, >30은 SIADH/이뇨제/신장성 손실 등을 감별', cat:'renal' },
+  { term:'SIADH', full:'Syndrome of Inappropriate Antidiuretic Hormone Secretion', ko:'부적절 항이뇨호르몬 분비 증후군. euvolemic hypotonic hyponatremia의 중요한 원인이나 배제진단', cat:'renal' },
+
+{ term:'ECF',        full:'Extracellular Fluid',
+  ko:'세포외액. 혈장·간질액·소량의 경유액으로 구성. 총 체수분(TBW)의 약 1/3(체중 60 kg 기준 약 14 L). 저나트륨혈증 감별의 핵심 임상 평가: ECF 감소(탈수·저혈량), ECF 정상(euvolemic·SIADH), ECF 증가(심부전·간경변·신증후군). 소변 Na⁺·삼투압과 함께 원인 감별에 사용.',
+  cat:'renal' },
+
+{ term:'ISE',        full:'Ion-Selective Electrode',
+  ko:'이온 선택적 전극. Na⁺·K⁺·Cl⁻ 측정에 사용. 직접 ISE(direct ISE, 혈액가스분석기·point-of-care)는 실제 이온 농도 직접 측정. 간접 ISE(autoanalyzer)는 혈장 희석 후 측정 → 고지혈증·고단백혈증 시 가성 저나트륨혈증(pseudohyponatremia) 유발. 혈청 Osm 280–295에서 저Na 패턴이면 직접 ISE로 재확인 권고.',
+  cat:'renal' },
+
+{ term:'Osmolar gap', full:'Osmolar Gap (삼투질 농도 갭)',
+  ko:'삼투질 농도 갭. 공식: 실측 혈청 Osm − 계산 Osm (= 2×Na⁺ + 포도당/18 + BUN/2.8). 정상 <10 mOsm/kg. >10이면 측정 불가 삼투성 물질 존재를 시사: 알코올·에틸렌글리콜·메탄올·만니톨·조영제·maltose. 고장성 저나트륨혈증(Osm >295)의 원인 osmole 확인에 활용.',
+  cat:'renal' },
+
+{ term:'Pseudohyponatremia', full:'Pseudohyponatremia (가성 저나트륨혈증)',
+  ko:'가성 저나트륨혈증. 실제 혈청 Na⁺는 정상이나 간접 ISE(자동분석기)에서 낮게 측정되는 현상. 원인: 심한 고지혈증(TG >1,000 mg/dL), 심한 고단백혈증(다발성 골수종·간경변). Isotonic serum Osm(280–295 mOsm/kg) 상태에서 저Na 패턴. 직접 ISE(혈액가스분석) 또는 TG·총단백 확인으로 감별.',
+  cat:'renal' },
+
+{ term:'ODS',        full:'Osmotic Demyelination Syndrome',
+  ko:'삼투성 탈수초 증후군. 만성 저나트륨혈증을 너무 빠르게 교정할 때 발생하는 중추신경계 합병증. 교뇨 이행부(central pons)에서 흔해 central pontine myelinolysis(CPM)라고도 불림. 교정 속도 제한: 24시간 내 8–10 mmol/L, 48시간 내 18 mmol/L 초과 금지. 고위험군: 영양결핍·알코올중독·저칼륨혈증·간이식. 증상: 사지마비·연하장애·의식변화.',
+  cat:'renal' },
+
+{ term:'Tolvaptan',  full:'Tolvaptan (Samsca / Jynarque)',
+  ko:'톨밥탄. ADH V2 수용체 길항제(vaptan계). 신장 집합관 AQP2 수로 삽입 차단 → 무전해질 수분만 배설(aquaresis) → 혈청 Na⁺ 상승. SIADH·심부전·간경변 동반 euvolemic/hypervolemic 저나트륨혈증에 사용. 교정 속도 과빠름(ODS 위험) → 입원 상태에서 초기 모니터링 필수. 간경변 환자에서 사용 금기.',
+  cat:'renal' },
+
+{ term:'DDAVP',      full:'Desmopressin (1-deamino-8-D-Arginine Vasopressin)',
+  ko:'데스모프레신. 합성 ADH 유사체. V2 수용체 선택적 작용. 중추성 요붕증·야뇨증·폰빌레브란트병에 치료 사용. 저나트륨혈증에서는 과교정 방지 목적으로 "desmopressin clamp" 전략에 활용: 수분 제한·고장성 식염수로 Na⁺가 빠르게 오를 때 desmopressin 투여로 교정 속도 조절. 비강내·경구·정맥 투여 가능.',
+  cat:'renal' },
+
+{ term:'Aquaresis',  full:'Aquaresis (무전해질 수분이뇨)',
+  ko:'무전해질 수분이뇨. 전해질 손실 없이 순수 수분만 배설되는 현상. ADH 억제(primary polydipsia 치료) 또는 ADH 수용체 차단제(tolvaptan)에 의해 유발. 전통적 이뇨제(나트륨·수분 동시 배설)와 구분. Aquaresis 중에는 혈청 Na⁺가 빠르게 상승할 수 있어 ODS 위험 주의. Uosm 급감, 소변량 증가가 특징.',
+  cat:'renal' },
+
+{ term:'FEuA',       full:'Fractional Excretion of Uric Acid',
+  ko:'요산 분획 배설률. 공식: (요Uric acid × 혈장Cr) / (혈장Uric acid × 요Cr) × 100 (%). 정상 약 4–12%. SIADH에서 ≥12% (요산 배설 증가, 혈청 uric acid 저하). Hypovolemic 저Na에서 <12% (세관에서 재흡수 증가). 이뇨제 복용 중 UNa⁺ 해석의 한계를 보완하는 감별 지표.',
+  cat:'renal' },
+
+{ term:'FEurea',     full:'Fractional Excretion of Urea',
+  ko:'요소 분획 배설률. 공식: (요Urea × 혈장Cr) / (혈장BUN × 요Cr) × 100 (%). 정상 약 40–65%. FEurea <35%: 신전성 저혈량을 시사(이뇨제 복용 중에도 상대적으로 낮음). FEurea >40%: 실질 신손상 또는 SIADH. 이뇨제 사용 환자에서 FENa 해석이 불가할 때 대안 감별 지표로 유용.',
+  cat:'renal' },
+
+{ term:'SSRI',       full:'Selective Serotonin Reuptake Inhibitor',
+  ko:'선택적 세로토닌 재흡수 억제제. 플루옥세틴·세르트랄린·에스시탈로프람·파록세틴 등. 저나트륨혈증 주요 유발 약제: 세로토닌이 ADH 분비를 자극하는 SIADH 기전. 노인·이뇨제 병용·저체중 환자에서 위험 증가. 개시 2–4주 내 혈청 Na⁺ 모니터링 권고.',
+  cat:'renal' },
+
+{ term:'SNRI',       full:'Serotonin-Norepinephrine Reuptake Inhibitor',
+  ko:'세로토닌-노르에피네프린 재흡수 억제제. 벤라팍신·둘록세틴·밀나시프란 등. SSRI와 유사한 기전으로 SIADH → 저나트륨혈증 유발 가능. 발생 빈도는 SSRI와 유사. 저나트륨혈증 발생 시 SSRI/SNRI 중단·대체 후 경과 관찰 및 재평가.',
+  cat:'renal' },
+
+{ term:'GCS',        full:'Glasgow Coma Scale',
+  ko:'글래스고 혼수 척도. 의식 수준 표준 평가 도구. 눈뜨기(E, 1–4)·언어반응(V, 1–5)·운동반응(M, 1–6) 합산, 3–15점. ≤8: 중증 의식장애(삽관 고려). 저나트륨혈증 중증도 분류: GCS ≤8은 중증 신경학적 증상으로 3% 고장성 식염수 응급 투여 적응증.',
+  cat:'stats' },
+
+{ term:'CSW',        full:'Cerebral Salt Wasting',
+  ko:'뇌성 염분 소실. 뇌출혈·두부 외상·뇌수술 후 주로 발생. 신장에서 Na⁺·수분 과다 배설 → 저Na혈증 + 저혈량증. SIADH와의 핵심 감별: CSW는 ECF 감소(기립저혈압·BUN/Cr 상승·혈청 uric acid 정상 또는 상승)가 특징. 치료: Na⁺·수액 보충, fludrocortisone. SIADH로 오인 시 수분 제한이 오히려 해악.',
+  cat:'renal' },
+
+{ term:'Beer potomania', full:'Beer Potomania',
+  ko:'맥주 다음증 저나트륨혈증. 하루 6–10 L 이상의 맥주를 주식처럼 섭취 시 발생. 맥주의 극도로 낮은 용질 부하(Na⁺·K⁺·단백질 결핍) + 대량 수분 → 희석 한계 초과. Uosm ≤100 mOsm/kg, ADH 억제 패턴. 치료: 단백·염분 섭취 증가 + 수분 제한. 용질 보충 후 aquaresis가 급격히 오면 ODS 위험 주의.',
+  cat:'renal' },
+
+{ term:'Primary polydipsia', full:'Primary Polydipsia (원발성 다음증)',
+  ko:'원발성 다음증. 심한 갈증 또는 강박적 수분 섭취로 인한 저나트륨혈증. 정신과 질환(조현병·양극성 장애)·항정신병약 유발 구강건조증·시상하부 병변에서 발생. Uosm ≤100 mOsm/kg + 다뇨가 특징. ADH 자체는 정상 억제됨. 치료: 수분 제한, 원인 약제 조정. 교정 후 aquaresis 급속 발생 → ODS 위험.',
+  cat:'renal' },
+
+{ term:'Bartter',    full:'Bartter Syndrome',
+  ko:'바르터 증후군. 헨레루프 굵은 상행각(TALH)의 이온 수송체(NKCC2·ROMK·ClC-Kb 등) 결손으로 인한 원발성 신성 염분 소실 유전 질환. 저칼륨혈증 + 대사성 알칼리증 + 정상~저혈압 + 고레닌 + 고알도스테론 + 고칼슘뇨증. Loop diuretic(furosemide) 사용과 임상적으로 유사. TTKG ≥3. 치료: K⁺ 보충·인도메타신·ACEi.',
+  cat:'renal' },
+
+{ term:'Gitelman',   full:'Gitelman Syndrome',
+  ko:'기텔만 증후군. 원위 세뇨관 thiazide-감수성 NCC 채널(SLC12A3 변이) 결손. 저칼륨혈증 + 저마그네슘혈증 + 저칼슘뇨증 + 대사성 알칼리증. 바르터 증후군보다 흔하고 경증. Thiazide 사용과 임상 유사. TTKG ≥3. 치료: K⁺·Mg²⁺ 보충, 필요 시 ACEi·인도메타신.',
+  cat:'renal' },
+
+{ term:'PHA',        full:'Pseudohypoaldosteronism',
+  ko:'가성 저알도스테론증. 알도스테론 저항성으로 고칼륨혈증·나트륨 소실이 발생하나 알도스테론은 정상 이상. Type I: 신생아기 발현, ENaC(상피성 Na 채널) 또는 MR 변이. Type II(Gordon syndrome): 고혈압 + 고칼륨혈증 + 대사성 산증, WNK kinase 변이. TTKG <7이면서 알도스테론 상승 → PHA 시사. 약제성(스피로놀락톤·amiloride·tacrolimus)도 기능적 PHA 유발.',
+  cat:'renal' },
+
+{ term:'EABV',       full:'Effective Arterial Blood Volume',
+  ko:'유효 동맥 혈액량. 신장의 압수용체가 인지하는 관류 용량. 실제 총 체액량·혈장량과 다를 수 있음. EABV 감소 → ADH 분비 자극 + 신장 Na⁺ 보존 → 저나트륨혈증. 심부전·간경변·신증후군은 총 체액량 증가(부종)에도 불구하고 EABV 감소(= 혈관 내 용적 부족). 탈수·출혈에서는 실제 저혈량과 함께 EABV 감소.',
+  cat:'renal' },
 
 /* ── LIVER ── */
 { term:'FIB-4',      full:'Fibrosis-4 Index',
@@ -3366,83 +3445,6 @@ const GLOSSARY = [
   ko:'무작위 대조 시험. 임상 근거 수준의 최상위 단계(메타분석 제외). 대상자를 무작위로 치료군·대조군 배정하여 교란변수 균형. EMPA-REG·DAPA-HF·FIDELIO·FIGARO 등 주요 임상 근거. 맹검 여부에 따라 단일·이중맹검 RCT 구분.',
   cat:'stats' },
 
-/* ── 저나트륨혈증 관련 신규 ── */
-{ term:'SNa',        full:'Serum Sodium',
-  ko:'혈청 나트륨 농도. 저나트륨혈증은 보통 SNa <135 mmol/L',
-  cat:'renal' },
-{ term:'Posm',       full:'Plasma/Serum Osmolality',
-  ko:'혈장/혈청 삼투질농도. 저Na 감별의 첫 단계: hypertonic/isotonic/hypotonic 분류',
-  cat:'renal' },
-{ term:'Uosm',       full:'Urine Osmolality',
-  ko:'소변 삼투질농도. ≤100 mOsm/kg이면 ADH 억제/묽은 소변, >100이면 ADH 활성 상태를 시사',
-  cat:'renal' },
-{ term:'UNa',        full:'Urine Sodium',
-  ko:'소변 나트륨. hypotonic hyponatremia에서 ≤30은 낮은 effective arterial volume 가능, >30은 SIADH/이뇨제/신장성 손실 등을 감별',
-  cat:'renal' },
-{ term:'SIADH',      full:'Syndrome of Inappropriate Antidiuretic Hormone Secretion',
-  ko:'부적절 항이뇨호르몬 분비 증후군. euvolemic hypotonic hyponatremia의 중요한 원인이나 배제진단',
-  cat:'renal' },
-{ term:'ECF',        full:'Extracellular Fluid',
-  ko:'세포외액. 혈장·간질액·소량의 경유액으로 구성. 총 체수분(TBW)의 약 1/3(체중 60 kg 기준 약 14 L). 저나트륨혈증 감별의 핵심 임상 평가: ECF 감소(탈수·저혈량), ECF 정상(euvolemic·SIADH), ECF 증가(심부전·간경변·신증후군). 소변 Na⁺·삼투압과 함께 원인 감별에 사용.',
-  cat:'renal' },
-{ term:'ISE',        full:'Ion-Selective Electrode',
-  ko:'이온 선택적 전극. Na⁺·K⁺·Cl⁻ 측정에 사용. 직접 ISE(direct ISE, 혈액가스분석기·point-of-care)는 실제 이온 농도 직접 측정. 간접 ISE(autoanalyzer)는 혈장 희석 후 측정 → 고지혈증·고단백혈증 시 가성 저나트륨혈증(pseudohyponatremia) 유발. 혈청 Osm 280–295에서 저Na 패턴이면 직접 ISE로 재확인 권고.',
-  cat:'renal' },
-{ term:'Osmolar gap', full:'Osmolar Gap (삼투질 농도 갭)',
-  ko:'삼투질 농도 갭. 공식: 실측 혈청 Osm − 계산 Osm (= 2×Na⁺ + 포도당/18 + BUN/2.8). 정상 <10 mOsm/kg. >10이면 측정 불가 삼투성 물질 존재를 시사: 알코올·에틸렌글리콜·메탄올·만니톨·조영제·maltose. 고장성 저나트륨혈증(Osm >295)의 원인 osmole 확인에 활용.',
-  cat:'renal' },
-{ term:'Pseudohyponatremia', full:'Pseudohyponatremia (가성 저나트륨혈증)',
-  ko:'가성 저나트륨혈증. 실제 혈청 Na⁺는 정상이나 간접 ISE(자동분석기)에서 낮게 측정되는 현상. 원인: 심한 고지혈증(TG >1,000 mg/dL), 심한 고단백혈증(다발성 골수종·간경변). Isotonic serum Osm(280–295 mOsm/kg) 상태에서 저Na 패턴. 직접 ISE(혈액가스분석) 또는 TG·총단백 확인으로 감별.',
-  cat:'renal' },
-{ term:'ODS',        full:'Osmotic Demyelination Syndrome',
-  ko:'삼투성 탈수초 증후군. 만성 저나트륨혈증을 너무 빠르게 교정할 때 발생하는 중추신경계 합병증. 교뇨 이행부(central pons)에서 흔해 central pontine myelinolysis(CPM)라고도 불림. 교정 속도 제한: 24시간 내 8–10 mmol/L, 48시간 내 18 mmol/L 초과 금지. 고위험군: 영양결핍·알코올중독·저칼륨혈증·간이식. 증상: 사지마비·연하장애·의식변화.',
-  cat:'renal' },
-{ term:'Tolvaptan',  full:'Tolvaptan (Samsca / Jynarque)',
-  ko:'톨밥탄. ADH V2 수용체 길항제(vaptan계). 신장 집합관 AQP2 수로 삽입 차단 → 무전해질 수분만 배설(aquaresis) → 혈청 Na⁺ 상승. SIADH·심부전·간경변 동반 euvolemic/hypervolemic 저나트륨혈증에 사용. 교정 속도 과빠름(ODS 위험) → 입원 상태에서 초기 모니터링 필수. 간경변 환자에서 사용 금기.',
-  cat:'renal' },
-{ term:'DDAVP',      full:'Desmopressin (1-deamino-8-D-Arginine Vasopressin)',
-  ko:'데스모프레신. 합성 ADH 유사체. V2 수용체 선택적 작용. 중추성 요붕증·야뇨증·폰빌레브란트병에 치료 사용. 저나트륨혈증에서는 과교정 방지 목적으로 "desmopressin clamp" 전략에 활용: 수분 제한·고장성 식염수로 Na⁺가 빠르게 오를 때 desmopressin 투여로 교정 속도 조절. 비강내·경구·정맥 투여 가능.',
-  cat:'renal' },
-{ term:'Aquaresis',  full:'Aquaresis (무전해질 수분이뇨)',
-  ko:'무전해질 수분이뇨. 전해질 손실 없이 순수 수분만 배설되는 현상. ADH 억제(primary polydipsia 치료) 또는 ADH 수용체 차단제(tolvaptan)에 의해 유발. 전통적 이뇨제(나트륨·수분 동시 배설)와 구분. Aquaresis 중에는 혈청 Na⁺가 빠르게 상승할 수 있어 ODS 위험 주의. Uosm 급감, 소변량 증가가 특징.',
-  cat:'renal' },
-{ term:'FEuA',       full:'Fractional Excretion of Uric Acid',
-  ko:'요산 분획 배설률. 공식: (요Uric acid × 혈장Cr) / (혈장Uric acid × 요Cr) × 100 (%). 정상 약 4–12%. SIADH에서 ≥12% (요산 배설 증가, 혈청 uric acid 저하). Hypovolemic 저Na에서 <12% (세관에서 재흡수 증가). 이뇨제 복용 중 UNa⁺ 해석의 한계를 보완하는 감별 지표.',
-  cat:'renal' },
-{ term:'FEurea',     full:'Fractional Excretion of Urea',
-  ko:'요소 분획 배설률. 공식: (요Urea × 혈장Cr) / (혈장BUN × 요Cr) × 100 (%). 정상 약 40–65%. FEurea <35%: 신전성 저혈량을 시사(이뇨제 복용 중에도 상대적으로 낮음). FEurea >40%: 실질 신손상 또는 SIADH. 이뇨제 사용 환자에서 FENa 해석이 불가할 때 대안 감별 지표로 유용.',
-  cat:'renal' },
-{ term:'SSRI',       full:'Selective Serotonin Reuptake Inhibitor',
-  ko:'선택적 세로토닌 재흡수 억제제. 플루옥세틴·세르트랄린·에스시탈로프람·파록세틴 등. 저나트륨혈증 주요 유발 약제: 세로토닌이 ADH 분비를 자극하는 SIADH 기전. 노인·이뇨제 병용·저체중 환자에서 위험 증가. 개시 2–4주 내 혈청 Na⁺ 모니터링 권고.',
-  cat:'renal' },
-{ term:'SNRI',       full:'Serotonin-Norepinephrine Reuptake Inhibitor',
-  ko:'세로토닌-노르에피네프린 재흡수 억제제. 벤라팍신·둘록세틴·밀나시프란 등. SSRI와 유사한 기전으로 SIADH → 저나트륨혈증 유발 가능. 발생 빈도는 SSRI와 유사. 저나트륨혈증 발생 시 SSRI/SNRI 중단·대체 후 경과 관찰 및 재평가.',
-  cat:'renal' },
-{ term:'GCS',        full:'Glasgow Coma Scale',
-  ko:'글래스고 혼수 척도. 의식 수준 표준 평가 도구. 눈뜨기(E, 1–4)·언어반응(V, 1–5)·운동반응(M, 1–6) 합산, 3–15점. ≤8: 중증 의식장애(삽관 고려). 저나트륨혈증 중증도 분류: GCS ≤8은 중증 신경학적 증상으로 3% 고장성 식염수 응급 투여 적응증.',
-  cat:'stats' },
-{ term:'CSW',        full:'Cerebral Salt Wasting',
-  ko:'뇌성 염분 소실. 뇌출혈·두부 외상·뇌수술 후 주로 발생. 신장에서 Na⁺·수분 과다 배설 → 저Na혈증 + 저혈량증. SIADH와의 핵심 감별: CSW는 ECF 감소(기립저혈압·BUN/Cr 상승·혈청 uric acid 정상 또는 상승)가 특징. 치료: Na⁺·수액 보충, fludrocortisone. SIADH로 오인 시 수분 제한이 오히려 해악.',
-  cat:'renal' },
-{ term:'Beer potomania', full:'Beer Potomania',
-  ko:'맥주 다음증 저나트륨혈증. 하루 6–10 L 이상의 맥주를 주식처럼 섭취 시 발생. 맥주의 극도로 낮은 용질 부하(Na⁺·K⁺·단백질 결핍) + 대량 수분 → 희석 한계 초과. Uosm ≤100 mOsm/kg, ADH 억제 패턴. 치료: 단백·염분 섭취 증가 + 수분 제한. 용질 보충 후 aquaresis가 급격히 오면 ODS 위험 주의.',
-  cat:'renal' },
-{ term:'Primary polydipsia', full:'Primary Polydipsia (원발성 다음증)',
-  ko:'원발성 다음증. 심한 갈증 또는 강박적 수분 섭취로 인한 저나트륨혈증. 정신과 질환(조현병·양극성 장애)·항정신병약 유발 구강건조증·시상하부 병변에서 발생. Uosm ≤100 mOsm/kg + 다뇨가 특징. ADH 자체는 정상 억제됨. 치료: 수분 제한, 원인 약제 조정. 교정 후 aquaresis 급속 발생 → ODS 위험.',
-  cat:'renal' },
-{ term:'Bartter',    full:'Bartter Syndrome',
-  ko:'바르터 증후군. 헨레루프 굵은 상행각(TALH)의 이온 수송체(NKCC2·ROMK·ClC-Kb 등) 결손으로 인한 원발성 신성 염분 소실 유전 질환. 저칼륨혈증 + 대사성 알칼리증 + 정상~저혈압 + 고레닌 + 고알도스테론 + 고칼슘뇨증. Loop diuretic(furosemide) 사용과 임상적으로 유사. TTKG ≥3. 치료: K⁺ 보충·인도메타신·ACEi.',
-  cat:'renal' },
-{ term:'Gitelman',   full:'Gitelman Syndrome',
-  ko:'기텔만 증후군. 원위 세뇨관 thiazide-감수성 NCC 채널(SLC12A3 변이) 결손. 저칼륨혈증 + 저마그네슘혈증 + 저칼슘뇨증 + 대사성 알칼리증. 바르터 증후군보다 흔하고 경증. Thiazide 사용과 임상 유사. TTKG ≥3. 치료: K⁺·Mg²⁺ 보충, 필요 시 ACEi·인도메타신.',
-  cat:'renal' },
-{ term:'PHA',        full:'Pseudohypoaldosteronism',
-  ko:'가성 저알도스테론증. 알도스테론 저항성으로 고칼륨혈증·나트륨 소실이 발생하나 알도스테론은 정상 이상. Type I: 신생아기 발현, ENaC(상피성 Na 채널) 또는 MR 변이. Type II(Gordon syndrome): 고혈압 + 고칼륨혈증 + 대사성 산증, WNK kinase 변이. TTKG <7이면서 알도스테론 상승 → PHA 시사. 약제성(스피로놀락톤·amiloride·tacrolimus)도 기능적 PHA 유발.',
-  cat:'renal' },
-{ term:'EABV',       full:'Effective Arterial Blood Volume',
-  ko:'유효 동맥 혈액량. 신장의 압수용체가 인지하는 관류 용량. 실제 총 체액량·혈장량과 다를 수 있음. EABV 감소 → ADH 분비 자극 + 신장 Na⁺ 보존 → 저나트륨혈증. 심부전·간경변·신증후군은 총 체액량 증가(부종)에도 불구하고 EABV 감소(= 혈관 내 용적 부족). 탈수·출혈에서는 실제 저혈량과 함께 EABV 감소.',
-  cat:'renal' },
-
 ]; // END GLOSSARY
 
 (function() {
@@ -3467,46 +3469,54 @@ const GLOSSARY = [
   countEl.textContent = GLOSSARY.length + '개';
 
   function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-
   function hi(text, q) {
     if (!q) return text;
     return text.replace(new RegExp('(' + esc(q) + ')','gi'),
       '<span class="glossary-highlight">$1</span>');
   }
 
-  // ── 검색: term 필드만 대상 (1자: startsWith, 2자+: includes) ──
+  // ── 검색 ──
   function doSearch(q) {
     if (!q.trim()) return [];
     const lq = q.toLowerCase();
-    if (q.length === 1) {
-      return GLOSSARY.filter(g => g.term.toLowerCase().startsWith(lq)).slice(0, 12);
-    }
-    return GLOSSARY.filter(g => g.term.toLowerCase().includes(lq)).slice(0, 12);
+    if (q.length === 1) return GLOSSARY.filter(g => g.term.toLowerCase().startsWith(lq)).slice(0,12);
+    return GLOSSARY.filter(g => g.term.toLowerCase().includes(lq)).slice(0,12);
   }
+
+  let currentResults = [];   // 현재 표시 중인 결과 배열
 
   function render(q) {
     if (!q.trim()) { panel.classList.remove('show'); return; }
-    const items = doSearch(q);
+    currentResults = doSearch(q);
     panel.classList.add('show');
-    if (!items.length) {
+    if (!currentResults.length) {
       panel.innerHTML = '<div class="glossary-results-header">검색 결과</div>'
         + '<div class="glossary-no-result">일치하는 약어가 없습니다.</div>';
       return;
     }
-    const rows = items.map(g => {
+    const rows = currentResults.map((g, idx) => {
       const m = CAT_META[g.cat] || CAT_META.stats;
       const bg   = m.color + '12';
       const bord = m.color + '30';
-      return `<div class="glossary-item">
+      return `<div class="glossary-item" data-idx="${idx}">
         <span class="g-badge" style="color:${m.color};background:${bg};border-color:${bord}">${hi(g.term,q)}</span>
         <div class="g-body">
-          <div class="g-full">${g.full}<span class="g-cat-tag" style="color:${m.color}">${m.label}</span></div>
-          <div class="g-ko">${g.ko}</div>
+          <span class="g-full">${g.full}<span class="g-cat-tag" style="color:${m.color}">${m.label}</span></span>
+          <span class="g-open-hint">자세히 ›</span>
         </div>
       </div>`;
     }).join('');
-    panel.innerHTML = `<div class="glossary-results-header">검색 결과 — ${items.length}건</div>
+    panel.innerHTML = `<div class="glossary-results-header">검색 결과 — ${currentResults.length}건 &nbsp;·&nbsp; 클릭하면 설명이 열립니다</div>
       <div class="glossary-results-list">${rows}</div>`;
+
+    // 클릭 이벤트
+    panel.querySelectorAll('.glossary-item').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        const idx = parseInt(el.dataset.idx);
+        openModal(currentResults, idx);
+      });
+    });
   }
 
   inp.addEventListener('input', () => {
@@ -3520,9 +3530,79 @@ const GLOSSARY = [
     panel.classList.remove('show'); inp.focus();
   });
   document.addEventListener('click', e => {
-    if (!e.target.closest('.glossary-wrap')) panel.classList.remove('show');
+    if (!e.target.closest('.glossary-wrap') && !e.target.closest('.gmodal-overlay'))
+      panel.classList.remove('show');
   });
-  inp.addEventListener('keydown', e => { if (e.key==='Escape') panel.classList.remove('show'); });
+  inp.addEventListener('keydown', e => { if (e.key==='Escape') { panel.classList.remove('show'); closeModal(); } });
+
+  // ═══════════════════════════════
+  //  MODAL
+  // ═══════════════════════════════
+  const overlay  = document.getElementById('gmodalOverlay');
+  const gmodal   = document.getElementById('gmodal');
+  const mBadge   = document.getElementById('gmodalBadge');
+  const mFull    = document.getElementById('gmodalFull');
+  const mCat     = document.getElementById('gmodalCat');
+  const mKo      = document.getElementById('gmodalKo');
+  const mHint    = document.getElementById('gmodalHint');
+  const mClose   = document.getElementById('gmodalClose');
+  const mPrev    = document.getElementById('gmodalPrev');
+  const mNext    = document.getElementById('gmodalNext');
+
+  let modalList  = [];   // 현재 모달에서 탐색 중인 결과 배열
+  let modalIdx   = 0;
+
+  function openModal(list, idx) {
+    modalList = list;
+    modalIdx  = idx;
+    fillModal();
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    panel.classList.remove('show');
+  }
+
+  function fillModal() {
+    const g = modalList[modalIdx];
+    if (!g) return;
+    const m = CAT_META[g.cat] || CAT_META.stats;
+    const bg   = m.color + '15';
+    const bord = m.color + '60';
+    mBadge.textContent = g.term;
+    mBadge.style.color = m.color;
+    mBadge.style.background = bg;
+    mBadge.style.borderColor = bord;
+    mFull.textContent  = g.full;
+    mCat.textContent   = m.label;
+    mCat.style.color   = m.color;
+    mCat.style.borderColor = m.color + '80';
+    mCat.style.background  = bg;
+    mKo.textContent    = g.ko;
+    mHint.textContent  = `${modalIdx + 1} / ${modalList.length}`;
+    mPrev.disabled = (modalIdx === 0);
+    mNext.disabled = (modalIdx === modalList.length - 1);
+
+    // 애니메이션 재생
+    gmodal.style.animation = 'none';
+    gmodal.offsetHeight;   // reflow
+    gmodal.style.animation = '';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  mClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  mPrev.addEventListener('click', () => { if (modalIdx > 0) { modalIdx--; fillModal(); } });
+  mNext.addEventListener('click', () => { if (modalIdx < modalList.length - 1) { modalIdx++; fillModal(); } });
+
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('show')) return;
+    if (e.key === 'Escape')       closeModal();
+    if (e.key === 'ArrowLeft'  && modalIdx > 0)                      { modalIdx--; fillModal(); }
+    if (e.key === 'ArrowRight' && modalIdx < modalList.length - 1)   { modalIdx++; fillModal(); }
+  });
 })();
 </script>
 </body>
